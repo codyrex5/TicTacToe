@@ -11,23 +11,30 @@ public class TicTacToe {
     static Scanner in;
     static String[] board;
     static String turn;
-
     public static void main(String[] args) {
         in = new Scanner(System.in);
-        board = new String[9];
+        System.out.println("Welcome to Tic Tac Toe.");
+        System.out.println("Input a board size.");
+        System.out.println("For example, inputting 3 would make a 3x3 board.");
+        int boardSize = in.nextInt();
+        board = new String[boardSize * boardSize];
         turn = "X";
         String winner = null;
-        populateEmptyBoard();
-
-        System.out.println("Welcome to Tic Tac Toe.");
+        
+        for (int a = 0; a < (boardSize * boardSize); a++) {
+            board[a] = String.valueOf(a+1);
+        }
+        
         System.out.println("--------------------------------");
         System.out.println("How many people will be playing today? (1 or 2)");
         int playerChoice;
         playerChoice = in.nextInt();
+        
         while (!(playerChoice == 1 || playerChoice == 2)) {
             System.out.println("Invalid input; re-enter number of players (1 or 2):");
             playerChoice = in.nextInt();
         }
+        
         printBoard();
         if (playerChoice == 2){
             System.out.println("X's will play first. Enter a slot number to place X in:");
@@ -63,7 +70,6 @@ public class TicTacToe {
 
         if (playerChoice == 1){
             System.out.println("You are X's and will play first. Enter a slot number to place X in:");
-            
 
         }
     }
@@ -115,6 +121,24 @@ public class TicTacToe {
         return null;
     }
 
+    // static void printBoard() {     
+        // System.out.print("|");
+        // for (int i = 1; i < (Math.sqrt(board.length)); i++){
+            // System.out.print("---|");
+        // } 
+        // System.out.println("---|");
+        // for (int i = 0; i < (Math.sqrt(board.length)); i++){
+            // for (int j = 0; j < (Math.sqrt(board.length)); i++){
+                // System.out.print("| " + board[j] + " ");
+            // }
+            // System.out.println("|");
+        // }
+        // System.out.print("|");
+        // for (int i = 1; i < (Math.sqrt(board.length)); i++){
+            // System.out.print("---|");
+        // }
+        // System.out.println("---|");
+    // }
     static void printBoard() {      
         System.out.println("/---|---|---\\");      
         System.out.println("| " + board[0] + " | " + board[1] + " | " + board[2] + " |");      
@@ -123,12 +147,5 @@ public class TicTacToe {
         System.out.println("|-----------|");
         System.out.println("| " + board[6] + " | " + board[7] + " | " + board[8] + " |");
         System.out.println("/---|---|---\\");
-    }
-
-    static void populateEmptyBoard() {
-        for (int a = 0; a < 9; a++) {
-            board[a] = String.valueOf(a+1);
-
-        }
     }
 }
